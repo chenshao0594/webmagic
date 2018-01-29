@@ -27,6 +27,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
         } else {
             page.putField("repo", githubRepo);
         }
+		System.out.println(githubRepo.getAuthor());
     }
 
     @Override
