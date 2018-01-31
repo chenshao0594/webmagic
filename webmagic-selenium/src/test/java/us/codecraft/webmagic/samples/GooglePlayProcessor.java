@@ -28,7 +28,7 @@ public class GooglePlayProcessor implements PageProcessor {
 	@Override
 	public Site getSite() {
 		if (null == site) {
-			site = Site.me().setDomain("play.google.com").setSleepTime(300);
+			site = Site.getInstance().setDomain("play.google.com").setSleepTime(300);
 		}
 		return site;
 	}

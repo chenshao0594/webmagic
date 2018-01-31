@@ -1,13 +1,13 @@
 package us.codecraft.webmagic.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.CollectorPipeline;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The spider for page model extractor.<br>
@@ -30,7 +30,7 @@ import java.util.List;
  * </pre>
  * And start the spider by:
  * <pre>
- *   OOSpider.create(Site.me().addStartUrl("http://my.oschina.net/flashsword/blog")
+ *   OOSpider.create(Site.getInstance().addStartUrl("http://my.oschina.net/flashsword/blog")
  *        ,new JsonFilePageModelPipeline(), OschinaBlog.class).run();
  * }
  * </pre>
@@ -39,7 +39,6 @@ import java.util.List;
  * @since 0.2.0
  */
 public class OOSpider<T> extends Spider {
-
     private ModelPageProcessor modelPageProcessor;
 
     private ModelPipeline modelPipeline;

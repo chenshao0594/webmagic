@@ -54,7 +54,7 @@ public class SpiderTest {
 
             @Override
             public Site getSite() {
-                return Site.me().setSleepTime(0);
+                return Site.getInstance().setSleepTime(0);
             }
         }).setDownloader(new Downloader() {
             @Override

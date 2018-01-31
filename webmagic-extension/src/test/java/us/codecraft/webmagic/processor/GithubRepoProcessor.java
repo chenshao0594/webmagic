@@ -19,7 +19,7 @@ public class GithubRepoProcessor implements PageProcessor {
 
     @Override
     public Site getSite() {
-        return Site.me();
+        return Site.getInstance();
     }
 
     @Test

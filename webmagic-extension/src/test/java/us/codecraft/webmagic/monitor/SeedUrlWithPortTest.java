@@ -30,6 +30,6 @@ class TempProcessor implements PageProcessor {
 
     @Override
     public Site getSite() {
-        return Site.me();
+        return Site.getInstance();
     }
 }

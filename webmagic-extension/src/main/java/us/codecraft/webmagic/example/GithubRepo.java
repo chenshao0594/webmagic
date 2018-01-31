@@ -1,5 +1,7 @@
 package us.codecraft.webmagic.example;
 
+import java.util.List;
+
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.HasKey;
@@ -8,8 +10,6 @@ import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
-
-import java.util.List;
 
 /**
  * @author code4crafter@gmail.com <br>
@@ -28,7 +28,7 @@ public class GithubRepo implements HasKey {
     @ExtractBy("//div[@id='readme']/tidyText()")
     private String readme;
 
-    @ExtractBy(value = "//div[@class='repository-lang-stats']//li//span[@class='lang']/text()", multi = true)
+	@ExtractBy(value = "//div[@class='repository-lang-stats']//li//span[@class='lang']/text()")
     private List<String> language;
 
     @ExtractBy("//ul[@class='pagehead-actions']/li[1]//a[@class='social-count js-social-count']/text()")
@@ -41,7 +41,7 @@ public class GithubRepo implements HasKey {
     private String url;
 
     public static void main(String[] args) {
-        OOSpider.create(Site.me().setSleepTime(100)
+        OOSpider.create(Site.getInstance().setSleepTime(100)
                 , new ConsolePageModelPipeline(), GithubRepo.class)
                 .addUrl("https://github.com/code4craft").thread(10).run();
     }

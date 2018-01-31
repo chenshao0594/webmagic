@@ -1,16 +1,16 @@
 package us.codecraft.webmagic.model.samples;
 
+import java.util.List;
+
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.HasKey;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
-import us.codecraft.webmagic.pipeline.JsonFilePageModelPipeline;
 import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
-
-import java.util.List;
 
 /**
  * @author code4crafter@gmail.com <br>
@@ -28,7 +28,7 @@ public class GithubRepo implements HasKey {
     @ExtractBy("//div[@id='readme']")
     private String readme;
 
-    @ExtractBy(value = "//div[@class='repository-lang-stats']//li//span[@class='lang']",multi = true)
+	@ExtractBy(value = "//div[@class='repository-lang-stats']//li//span[@class='lang']")
     private List<String> language;
 
     @ExtractBy("//a[@class='social-count js-social-count']/text()")
@@ -41,8 +41,8 @@ public class GithubRepo implements HasKey {
     private String url;
 
     public static void main(String[] args) {
-        OOSpider.create(Site.me().setSleepTime(0).setRetryTimes(3),
-                new JsonFilePageModelPipeline(), GithubRepo.class)
+        OOSpider.create(Site.getInstance().setSleepTime(0).setRetryTimes(3),
+				new ConsolePageModelPipeline(), GithubRepo.class)
                 .addUrl("https://github.com/explore")
                 .setScheduler(new FileCacheQueueScheduler("/data/webmagic/cache/")).thread(15).run();
     }

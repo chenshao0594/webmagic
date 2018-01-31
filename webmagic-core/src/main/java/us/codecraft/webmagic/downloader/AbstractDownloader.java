@@ -31,7 +31,7 @@ public abstract class AbstractDownloader implements Downloader {
      * @return html
      */
     public Html download(String url, String charset) {
-        Page page = download(new Request(url), Site.me().setCharset(charset).toTask());
+        Page page = download(new Request(url), Site.getInstance().setCharset(charset).toTask());
         return (Html) page.getHtml();
     }
 

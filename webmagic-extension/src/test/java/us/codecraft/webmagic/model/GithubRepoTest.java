@@ -16,7 +16,7 @@ public class GithubRepoTest {
 
     @Test
     public void test() {
-        OOSpider.create(Site.me().setSleepTime(0)
+        OOSpider.create(Site.getInstance().setSleepTime(0)
                 , new PageModelPipeline<GithubRepo>() {
             @Override
             public void process(GithubRepo o, Task task) {

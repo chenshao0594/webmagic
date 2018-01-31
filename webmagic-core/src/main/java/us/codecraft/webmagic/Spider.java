@@ -1,9 +1,24 @@
 package us.codecraft.webmagic;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import us.codecraft.webmagic.downloader.Downloader;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.pipeline.CollectorPipeline;
@@ -16,16 +31,6 @@ import us.codecraft.webmagic.scheduler.Scheduler;
 import us.codecraft.webmagic.thread.CountableThreadPool;
 import us.codecraft.webmagic.utils.UrlUtils;
 import us.codecraft.webmagic.utils.WMCollections;
-
-import java.io.Closeable;
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Entrance of a crawler.<br>
@@ -165,18 +170,6 @@ public class Spider implements Runnable, Task {
     public Spider setUUID(String uuid) {
         this.uuid = uuid;
         return this;
-    }
-
-    /**
-     * set scheduler for Spider
-     *
-     * @param scheduler scheduler
-     * @return this
-     * @see #setScheduler(us.codecraft.webmagic.scheduler.Scheduler)
-     */
-    @Deprecated
-    public Spider scheduler(Scheduler scheduler) {
-        return setScheduler(scheduler);
     }
 
     /**
@@ -419,7 +412,7 @@ public class Spider implements Runnable, Task {
                 }
             }
         } else {
-            logger.info("page status code error, page {} , code: {}", request.getUrl(), page.getStatusCode());
+			logger.warn("page status code error, page {} , code: {}", request.getUrl(), page.getStatusCode());
         }
         sleep(site.getSleepTime());
         return;

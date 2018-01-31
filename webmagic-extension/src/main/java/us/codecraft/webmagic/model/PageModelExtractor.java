@@ -1,15 +1,6 @@
 package us.codecraft.webmagic.model;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.model.annotation.*;
-import us.codecraft.webmagic.model.formatter.ObjectFormatter;
-import us.codecraft.webmagic.model.formatter.ObjectFormatterBuilder;
-import us.codecraft.webmagic.selector.*;
-import us.codecraft.webmagic.utils.ClassUtils;
-import us.codecraft.webmagic.utils.ExtractorUtils;
+import static us.codecraft.webmagic.model.annotation.ExtractBy.Source.RawText;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -19,7 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static us.codecraft.webmagic.model.annotation.ExtractBy.Source.RawText;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.model.annotation.ComboExtract;
+import us.codecraft.webmagic.model.annotation.ExtractBy;
+import us.codecraft.webmagic.model.annotation.ExtractByUrl;
+import us.codecraft.webmagic.model.annotation.HelpUrl;
+import us.codecraft.webmagic.model.annotation.TargetUrl;
+import us.codecraft.webmagic.model.formatter.ObjectFormatter;
+import us.codecraft.webmagic.model.formatter.ObjectFormatterBuilder;
+import us.codecraft.webmagic.selector.AndSelector;
+import us.codecraft.webmagic.selector.OrSelector;
+import us.codecraft.webmagic.selector.RegexSelector;
+import us.codecraft.webmagic.selector.Selector;
+import us.codecraft.webmagic.selector.XpathSelector;
+import us.codecraft.webmagic.utils.ClassUtils;
+import us.codecraft.webmagic.utils.ExtractorUtils;
 
 /**
  * The main internal logic of page model extractor.
@@ -193,7 +202,8 @@ class PageModelExtractor {
         annotation = clazz.getAnnotation(ExtractBy.class);
         if (annotation != null) {
             ExtractBy extractBy = (ExtractBy) annotation;
-            objectExtractor = new Extractor(new XpathSelector(extractBy.value()), Extractor.Source.Html, extractBy.notNull(), extractBy.multi());
+			objectExtractor = new Extractor(new XpathSelector(extractBy.value()), Extractor.Source.Html,
+					extractBy.notNull(), extractBy.multi());
         }
     }
 

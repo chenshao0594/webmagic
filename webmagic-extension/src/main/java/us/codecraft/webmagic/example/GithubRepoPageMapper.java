@@ -12,7 +12,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class GithubRepoPageMapper implements PageProcessor {
 
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(0);
+    private Site site = Site.getInstance().setRetryTimes(3).setSleepTime(0);
 
     private PageMapper<GithubRepo> githubRepoPageMapper = new PageMapper<GithubRepo>(GithubRepo.class);
 

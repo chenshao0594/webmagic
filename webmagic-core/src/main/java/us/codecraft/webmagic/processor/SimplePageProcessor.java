@@ -18,7 +18,7 @@ public class SimplePageProcessor implements PageProcessor {
     private Site site;
 
     public SimplePageProcessor(String urlPattern) {
-        this.site = Site.me();
+        this.site = Site.getInstance();
         //compile "*" expression to regex
         this.urlPattern = "(" + urlPattern.replace(".", "\\.").replace("*", "[^\"'#]*") + ")";
 

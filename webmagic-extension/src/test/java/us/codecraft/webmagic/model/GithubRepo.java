@@ -17,7 +17,7 @@ public class GithubRepo extends BaseRepo{
     private int fork;
 
     public static void main(String[] args) {
-        OOSpider.create(Site.me().setSleepTime(100)
+        OOSpider.create(Site.getInstance().setSleepTime(100)
                 , new ConsolePageModelPipeline(), GithubRepo.class)
                 .addUrl("https://github.com/code4craft").thread(10).run();
     }

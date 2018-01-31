@@ -29,7 +29,7 @@ public class ScriptProcessor implements PageProcessor {
 
     private final Language language;
 
-    private Site site = Site.me();
+    private Site site = Site.getInstance();
 
     public ScriptProcessor(Language language, String script, int threadNum) {
         if (language == null || script == null) {

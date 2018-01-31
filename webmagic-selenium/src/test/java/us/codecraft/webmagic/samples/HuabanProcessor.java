@@ -31,7 +31,7 @@ public class HuabanProcessor implements PageProcessor {
     @Override
     public Site getSite() {
         if (null == site) {
-            site = Site.me().setDomain("huaban.com").setSleepTime(0);
+            site = Site.getInstance().setDomain("huaban.com").setSleepTime(0);
         }
         return site;
     }

@@ -1,6 +1,13 @@
 package us.codecraft.webmagic.samples.scheduler;
 
+import static us.codecraft.webmagic.selector.Selectors.xpath;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.StringUtils;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -8,22 +15,17 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.PriorityScheduler;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static us.codecraft.webmagic.selector.Selectors.xpath;
-
 /**
  * @author code4crafter@gmail.com
  */
 public class ZipCodePageProcessor implements PageProcessor {
 
-    private Site site = Site.me().setCharset("gb2312")
+    private Site site = Site.getInstance().setCharset("gb2312")
             .setSleepTime(100);
 
     @Override
     public void process(Page page) {
+		System.out.println(page);
         if (page.getUrl().toString().equals("http://www.ip138.com/post/")) {
             processCountry(page);
         } else if (page.getUrl().regex("http://www\\.ip138\\.com/\\d{6}[/]?$").toString() != null) {
@@ -78,7 +80,8 @@ public class ZipCodePageProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        Spider spider = Spider.create(new ZipCodePageProcessor()).scheduler(new PriorityScheduler()).addUrl("http://www.ip138.com/post/");
+		Spider spider = Spider.create(new ZipCodePageProcessor()).setScheduler(new PriorityScheduler())
+				.addUrl("http://www.ip138.com/post/");
 
         spider.run();
     }

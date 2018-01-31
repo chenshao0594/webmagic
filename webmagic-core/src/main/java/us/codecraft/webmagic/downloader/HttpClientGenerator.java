@@ -1,5 +1,18 @@
 package us.codecraft.webmagic.downloader;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Map;
+import java.util.Random;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
@@ -11,23 +24,18 @@ import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.DefaultHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.*;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.protocol.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import us.codecraft.webmagic.Site;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Map;
+import us.codecraft.webmagic.Site;
 
 /**
  * @author code4crafter@gmail.com <br>
@@ -98,11 +106,13 @@ public class HttpClientGenerator {
         HttpClientBuilder httpClientBuilder = HttpClients.custom();
         
         httpClientBuilder.setConnectionManager(connectionManager);
-        if (site.getUserAgent() != null) {
-            httpClientBuilder.setUserAgent(site.getUserAgent());
-        } else {
-            httpClientBuilder.setUserAgent("");
-        }
+		if (CollectionUtils.isEmpty(site.getUserAgents())) {
+			httpClientBuilder.setUserAgent("");
+		} else {
+			int length = site.getUserAgents().size();
+			Random random = new Random();
+			httpClientBuilder.setUserAgent(site.getUserAgents().get(random.nextInt(length)));
+		}
         if (site.isUseGzip()) {
             httpClientBuilder.addInterceptorFirst(new HttpRequestInterceptor() {
 

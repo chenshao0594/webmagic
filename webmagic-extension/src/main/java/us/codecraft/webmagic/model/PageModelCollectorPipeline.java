@@ -1,13 +1,13 @@
 package us.codecraft.webmagic.model;
 
+import java.lang.annotation.Annotation;
+import java.util.List;
+
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.pipeline.CollectorPageModelPipeline;
 import us.codecraft.webmagic.pipeline.CollectorPipeline;
-
-import java.lang.annotation.Annotation;
-import java.util.List;
 
 /**
  * @author code4crafter@gmail.com
@@ -33,7 +33,7 @@ class PageModelCollectorPipeline<T> implements CollectorPipeline<T> {
         Object o = resultItems.get(clazz.getCanonicalName());
         if (o != null) {
             Annotation annotation = clazz.getAnnotation(ExtractBy.class);
-            if (annotation == null || !((ExtractBy) annotation).multi()) {
+			if (annotation == null) {
                 classPipeline.process((T) o, task);
             } else {
                 List<Object> list = (List<Object>) o;

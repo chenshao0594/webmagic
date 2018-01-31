@@ -16,7 +16,7 @@ public class SimpleHttpClient {
     private final Site site;
 
     public SimpleHttpClient() {
-        this(Site.me());
+        this(Site.getInstance());
     }
 
     public SimpleHttpClient(Site site) {

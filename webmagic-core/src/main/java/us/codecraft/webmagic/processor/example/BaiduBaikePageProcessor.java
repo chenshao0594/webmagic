@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BaiduBaikePageProcessor implements PageProcessor {
 
-    private Site site = Site.me()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
+    private Site site = Site.getInstance()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
             .setRetryTimes(3).setSleepTime(1000).setUseGzip(true);
 
     @Override

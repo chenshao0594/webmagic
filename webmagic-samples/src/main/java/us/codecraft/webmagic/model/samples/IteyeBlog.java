@@ -1,8 +1,11 @@
 package us.codecraft.webmagic.model.samples;
 
+import java.util.Arrays;
+
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.model.annotation.ExtractBy;
+import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.OOSpider;
+import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 /**
@@ -28,7 +31,12 @@ public class IteyeBlog implements Blog{
     }
 
     public static void main(String[] args) {
-        OOSpider.create(Site.me(), IteyeBlog.class).addUrl("http://flashsword20.iteye.com/blog").run();
+		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
+
+		OOSpider.create(Site.getInstance().setUserAgents(Arrays.asList(userAgent)), new ConsolePageModelPipeline(),
+				IteyeBlog.class)
+				.addUrl("http://flashsword20.iteye.com/blog")
+				.run();
     }
 
     public String getTitle() {

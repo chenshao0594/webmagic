@@ -1,13 +1,13 @@
 package us.codecraft.webmagic.model.samples;
 
+import java.util.List;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.AfterExtractor;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
-
-import java.util.List;
 
 /**
  * @author yihua.huang@dianping.com <br>
@@ -17,11 +17,11 @@ import java.util.List;
 @TargetUrl("http://*.alpha.dp/*")
 public class DianpingFtlDataScanner implements AfterExtractor {
 
-	@ExtractBy(value = "(DP\\.data\\(\\{.*\\}\\));", type = ExtractBy.Type.Regex, notNull = true, multi = true)
+	@ExtractBy(value = "(DP\\.data\\(\\{.*\\}\\));", type = ExtractBy.Type.Regex, notNull = true)
 	private List<String> data;
 
 	public static void main(String[] args) {
-		OOSpider.create(Site.me().setSleepTime(0), DianpingFtlDataScanner.class)
+		OOSpider.create(Site.getInstance().setSleepTime(0), DianpingFtlDataScanner.class)
 				.thread(5).run();
 	}
 

@@ -1,8 +1,14 @@
 package us.codecraft.webmagic;
 
-import us.codecraft.webmagic.utils.HttpConstant;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
-import java.util.*;
+import us.codecraft.webmagic.utils.HttpConstant;
 
 /**
  * Object contains setting for crawler.<br>
@@ -15,7 +21,7 @@ public class Site {
 
     private String domain;
 
-    private String userAgent;
+	private List<String> userAgents;
 
     private Map<String, String> defaultCookies = new LinkedHashMap<String, String>();
 
@@ -52,7 +58,7 @@ public class Site {
      *
      * @return new site
      */
-    public static Site me() {
+	public static Site getInstance() {
         return new Site();
     }
 
@@ -84,16 +90,6 @@ public class Site {
         return this;
     }
 
-    /**
-     * set user agent
-     *
-     * @param userAgent userAgent
-     * @return this
-     */
-    public Site setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-        return this;
-    }
 
     /**
      * get cookies
@@ -113,20 +109,11 @@ public class Site {
         return cookies;
     }
 
-    /**
-     * get user agent
-     *
-     * @return user agent
-     */
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    /**
-     * get domain
-     *
-     * @return get domain
-     */
+	/*
+	 * get domain
+	 *
+	 * @return get domain
+	 */
     public String getDomain() {
         return domain;
     }
@@ -327,7 +314,16 @@ public class Site {
         return this;
     }
 
-    public Task toTask() {
+	public List<String> getUserAgents() {
+		return userAgents;
+	}
+
+	public Site setUserAgents(List<String> userAgents) {
+		this.userAgents = userAgents;
+		return this;
+	}
+
+	public Task toTask() {
         return new Task() {
             @Override
             public String getUUID() {
@@ -363,7 +359,8 @@ public class Site {
             return false;
         if (domain != null ? !domain.equals(site.domain) : site.domain != null) return false;
         if (headers != null ? !headers.equals(site.headers) : site.headers != null) return false;
-        if (userAgent != null ? !userAgent.equals(site.userAgent) : site.userAgent != null) return false;
+		if (userAgents != null ? !userAgents.equals(site.userAgents) : site.userAgents != null)
+			return false;
 
         return true;
     }
@@ -371,7 +368,7 @@ public class Site {
     @Override
     public int hashCode() {
         int result = domain != null ? domain.hashCode() : 0;
-        result = 31 * result + (userAgent != null ? userAgent.hashCode() : 0);
+		result = 31 * result + (userAgents != null ? userAgents.hashCode() : 0);
         result = 31 * result + (defaultCookies != null ? defaultCookies.hashCode() : 0);
         result = 31 * result + (charset != null ? charset.hashCode() : 0);
         result = 31 * result + sleepTime;
@@ -387,7 +384,7 @@ public class Site {
     public String toString() {
         return "Site{" +
                 "domain='" + domain + '\'' +
-                ", userAgent='" + userAgent + '\'' +
+				", userAgents='" + userAgents + '\'' +
                 ", cookies=" + defaultCookies +
                 ", charset='" + charset + '\'' +
                 ", sleepTime=" + sleepTime +

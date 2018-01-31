@@ -30,7 +30,7 @@ public class SeleniumDownloaderTest {
 
 				@Override
 				public Site getSite() {
-					return Site.me();
+					return Site.getInstance();
 				}
 			});
 			System.out.println(page.getHtml().$("#waterfall").links().regex(".*pins.*").all());
@@ -52,7 +52,7 @@ public class SeleniumDownloaderTest {
 
 			@Override
 			public Site getSite() {
-				return Site.me();
+				return Site.getInstance();
 			}
 		});
 		System.out.println(page.getHtml().$("div.inner").replace("<[^<>]+>","").replace("&nsbp;","").all());

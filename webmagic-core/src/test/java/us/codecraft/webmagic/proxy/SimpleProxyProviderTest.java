@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class SimpleProxyProviderTest {
 
-    public static final Task TASK = Site.me().toTask();
+    public static final Task TASK = Site.getInstance().toTask();
 
     @Test
     public void test_get_proxy() throws Exception {
