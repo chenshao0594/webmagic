@@ -1,15 +1,11 @@
 package us.codecraft.webmagic.selector;
 
-import net.sf.saxon.lib.NamespaceConstant;
-import net.sf.saxon.xpath.XPathEvaluator;
-import org.apache.log4j.Logger;
-import org.htmlcleaner.CleanerProperties;
-import org.htmlcleaner.DomSerializer;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.TagNode;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.transform.OutputKeys;
@@ -20,12 +16,19 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.DomSerializer;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import net.sf.saxon.lib.NamespaceConstant;
+import net.sf.saxon.xpath.XPathEvaluator;
 
 /**
  * 支持xpath2.0的选择器。包装了HtmlCleaner和Saxon HE。<br>
@@ -40,7 +43,7 @@ public class Xpath2Selector implements Selector {
 
     private XPathExpression xPathExpression;
 
-    private Logger logger = Logger.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     public Xpath2Selector(String xpathStr) {
         this.xpathStr = xpathStr;

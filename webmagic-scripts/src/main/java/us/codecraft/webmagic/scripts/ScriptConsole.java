@@ -1,18 +1,23 @@
 package us.codecraft.webmagic.scripts;
 
-import org.apache.commons.cli.*;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.PosixParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.utils.WMCollections;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author code4crafter@gmail.com
@@ -166,19 +171,16 @@ public class ScriptConsole {
     }
 
     private static void configLogger(String value) {
-        Logger rootLogger = Logger.getRootLogger();
-        if ("debug".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.DEBUG);
-        } else if ("info".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.INFO);
-        } else if ("warn".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.WARN);
-        } else if ("trace".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.TRACE);
-        } else if ("off".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.OFF);
-        } else if ("error".equalsIgnoreCase(value)) {
-            rootLogger.setLevel(Level.ERROR);
-        }
+		Logger rootLogger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+
+		/*
+		 * if ("debug".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.DEBUG); }
+		 * else if ("info".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.INFO); }
+		 * else if ("warn".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.WARN); }
+		 * else if ("trace".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.TRACE);
+		 * } else if ("off".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.OFF); }
+		 * else if ("error".equalsIgnoreCase(value)) { rootLogger.setLevel(Level.ERROR);
+		 * }
+		 */
     }
 }
