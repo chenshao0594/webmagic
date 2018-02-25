@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.samples.pipeline.OneFilePipeline;
@@ -17,7 +17,7 @@ import us.codecraft.webmagic.selector.Selectable;
  */
 public class MamacnPageProcessor implements PageProcessor {
 
-    private Site site = Site.getInstance().setDomain("www.mama.cn").setSleepTime(100);
+    private SiteConfig site = SiteConfig.getInstance().setDomain("www.mama.cn").setSleepTime(100);
 
     @Override
     public void process(Page page) {
@@ -36,7 +36,7 @@ public class MamacnPageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

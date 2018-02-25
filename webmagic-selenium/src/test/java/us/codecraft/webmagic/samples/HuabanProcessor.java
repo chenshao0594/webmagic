@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.samples;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.selenium.SeleniumDownloader;
 import us.codecraft.webmagic.pipeline.FilePipeline;
@@ -16,7 +16,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class HuabanProcessor implements PageProcessor {
 
-    private Site site;
+    private SiteConfig site;
 
     @Override
     public void process(Page page) {
@@ -29,9 +29,9 @@ public class HuabanProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         if (null == site) {
-            site = Site.getInstance().setDomain("huaban.com").setSleepTime(0);
+            site = SiteConfig.getInstance().setDomain("huaban.com").setSleepTime(0);
         }
         return site;
     }

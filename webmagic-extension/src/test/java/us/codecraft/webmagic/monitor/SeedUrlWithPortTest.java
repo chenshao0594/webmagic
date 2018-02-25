@@ -2,7 +2,7 @@ package us.codecraft.webmagic.monitor;
 
 import org.junit.Test;
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -29,7 +29,7 @@ class TempProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
-        return Site.getInstance();
+    public SiteConfig getSite() {
+        return SiteConfig.getInstance();
     }
 }

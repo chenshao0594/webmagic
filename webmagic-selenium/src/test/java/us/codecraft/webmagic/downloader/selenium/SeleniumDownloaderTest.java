@@ -4,7 +4,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Task;
 
 /**
@@ -29,8 +29,8 @@ public class SeleniumDownloaderTest {
 				}
 
 				@Override
-				public Site getSite() {
-					return Site.getInstance();
+				public SiteConfig getSite() {
+					return SiteConfig.getInstance();
 				}
 			});
 			System.out.println(page.getHtml().$("#waterfall").links().regex(".*pins.*").all());
@@ -51,8 +51,8 @@ public class SeleniumDownloaderTest {
 			}
 
 			@Override
-			public Site getSite() {
-				return Site.getInstance();
+			public SiteConfig getSite() {
+				return SiteConfig.getInstance();
 			}
 		});
 		System.out.println(page.getHtml().$("div.inner").replace("<[^<>]+>","").replace("&nsbp;","").all());

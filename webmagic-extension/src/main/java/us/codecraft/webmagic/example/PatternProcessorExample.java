@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.ResultItems;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.handler.CompositePageProcessor;
@@ -60,7 +60,7 @@ public class PatternProcessorExample {
             }
         };
 
-        CompositePageProcessor pageProcessor = new CompositePageProcessor(Site.getInstance().setDomain("github.com").setRetryTimes(3));
+        CompositePageProcessor pageProcessor = new CompositePageProcessor(SiteConfig.getInstance().setDomain("github.com").setRetryTimes(3));
         CompositePipeline pipeline = new CompositePipeline();
 
         pageProcessor.setSubPageProcessors(githubRepoProcessor, githubUserProcessor);

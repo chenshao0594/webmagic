@@ -2,7 +2,7 @@ package us.codecraft.webmagic.configurable;
 
 import org.junit.Test;
 import us.codecraft.webmagic.ResultItems;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.MockGithubDownloader;
 
@@ -30,7 +30,7 @@ public class ConfigurablePageProcessorTest {
         extractRule.setExpressionValue("//ul[@class='pagehead-actions']/li[1]//a[@class='social-count js-social-count']/text()");
         extractRule.setFieldName("star");
         extractRules.add(extractRule);
-        ResultItems resultItems = Spider.create(new ConfigurablePageProcessor(Site.getInstance(), extractRules))
+        ResultItems resultItems = Spider.create(new ConfigurablePageProcessor(SiteConfig.getInstance(), extractRules))
                 .setDownloader(new MockGithubDownloader()).get("https://github.com/code4craft/webmagic");
         assertThat(resultItems.getAll()).containsEntry("title", "<title>code4craft/webmagic · GitHub</title>");
         assertThat(resultItems.getAll()).containsEntry("star", " 86 ");

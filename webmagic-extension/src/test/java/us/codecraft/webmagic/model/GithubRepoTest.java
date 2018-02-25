@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.model;
 
 import org.junit.Test;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.downloader.MockGithubDownloader;
 import us.codecraft.webmagic.example.GithubRepo;
@@ -16,7 +16,7 @@ public class GithubRepoTest {
 
     @Test
     public void test() {
-        OOSpider.create(Site.getInstance().setSleepTime(0)
+        OOSpider.create(SiteConfig.getInstance().setSleepTime(0)
                 , new PageModelPipeline<GithubRepo>() {
             @Override
             public void process(GithubRepo o, Task task) {

@@ -2,7 +2,7 @@ package us.codecraft.webmagic.example;
 
 import java.util.List;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.HasKey;
 import us.codecraft.webmagic.model.OOSpider;
@@ -41,7 +41,7 @@ public class GithubRepo implements HasKey {
     private String url;
 
     public static void main(String[] args) {
-        OOSpider.create(Site.getInstance().setSleepTime(100)
+        OOSpider.create(SiteConfig.getInstance().setSleepTime(100)
                 , new ConsolePageModelPipeline(), GithubRepo.class)
                 .addUrl("https://github.com/code4craft").thread(10).run();
     }

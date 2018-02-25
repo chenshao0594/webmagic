@@ -17,7 +17,7 @@ import us.codecraft.webmagic.utils.HttpConstant;
  * @see us.codecraft.webmagic.processor.PageProcessor
  * @since 0.1.0
  */
-public class Site {
+public class SiteConfig {
 
     private String domain;
 
@@ -58,8 +58,8 @@ public class Site {
      *
      * @return new site
      */
-	public static Site getInstance() {
-        return new Site();
+	public static SiteConfig getInstance() {
+        return new SiteConfig();
     }
 
     /**
@@ -69,7 +69,7 @@ public class Site {
      * @param value value
      * @return this
      */
-    public Site addCookie(String name, String value) {
+    public SiteConfig addCookie(String name, String value) {
         defaultCookies.put(name, value);
         return this;
     }
@@ -82,7 +82,7 @@ public class Site {
      * @param value value
      * @return this
      */
-    public Site addCookie(String domain, String name, String value) {
+    public SiteConfig addCookie(String domain, String name, String value) {
         if (!cookies.containsKey(domain)){
             cookies.put(domain,new HashMap<String, String>());
         }
@@ -124,7 +124,7 @@ public class Site {
      * @param domain domain
      * @return this
      */
-    public Site setDomain(String domain) {
+    public SiteConfig setDomain(String domain) {
         this.domain = domain;
         return this;
     }
@@ -136,7 +136,7 @@ public class Site {
      * @param charset charset
      * @return this
      */
-    public Site setCharset(String charset) {
+    public SiteConfig setCharset(String charset) {
         this.charset = charset;
         return this;
     }
@@ -160,7 +160,7 @@ public class Site {
      * @param timeOut timeOut
      * @return this
      */
-    public Site setTimeOut(int timeOut) {
+    public SiteConfig setTimeOut(int timeOut) {
         this.timeOut = timeOut;
         return this;
     }
@@ -174,7 +174,7 @@ public class Site {
      * @param acceptStatCode acceptStatCode
      * @return this
      */
-    public Site setAcceptStatCode(Set<Integer> acceptStatCode) {
+    public SiteConfig setAcceptStatCode(Set<Integer> acceptStatCode) {
         this.acceptStatCode = acceptStatCode;
         return this;
     }
@@ -195,7 +195,7 @@ public class Site {
      * @param sleepTime sleepTime
      * @return this
      */
-    public Site setSleepTime(int sleepTime) {
+    public SiteConfig setSleepTime(int sleepTime) {
         this.sleepTime = sleepTime;
         return this;
     }
@@ -231,7 +231,7 @@ public class Site {
      * @param value value of header
      * @return this
      */
-    public Site addHeader(String key, String value) {
+    public SiteConfig addHeader(String key, String value) {
         headers.put(key, value);
         return this;
     }
@@ -242,7 +242,7 @@ public class Site {
      * @param retryTimes retryTimes
      * @return this
      */
-    public Site setRetryTimes(int retryTimes) {
+    public SiteConfig setRetryTimes(int retryTimes) {
         this.retryTimes = retryTimes;
         return this;
     }
@@ -262,7 +262,7 @@ public class Site {
      * @param cycleRetryTimes cycleRetryTimes
      * @return this
      */
-    public Site setCycleRetryTimes(int cycleRetryTimes) {
+    public SiteConfig setCycleRetryTimes(int cycleRetryTimes) {
         this.cycleRetryTimes = cycleRetryTimes;
         return this;
     }
@@ -281,7 +281,7 @@ public class Site {
      * @param retrySleepTime retrySleepTime
      * @return this
      */
-    public Site setRetrySleepTime(int retrySleepTime) {
+    public SiteConfig setRetrySleepTime(int retrySleepTime) {
         this.retrySleepTime = retrySleepTime;
         return this;
     }
@@ -293,7 +293,7 @@ public class Site {
      * @param useGzip useGzip
      * @return this
      */
-    public Site setUseGzip(boolean useGzip) {
+    public SiteConfig setUseGzip(boolean useGzip) {
         this.useGzip = useGzip;
         return this;
     }
@@ -309,7 +309,7 @@ public class Site {
      * @param disableCookieManagement disableCookieManagement
      * @return this
      */
-    public Site setDisableCookieManagement(boolean disableCookieManagement) {
+    public SiteConfig setDisableCookieManagement(boolean disableCookieManagement) {
         this.disableCookieManagement = disableCookieManagement;
         return this;
     }
@@ -318,7 +318,7 @@ public class Site {
 		return userAgents;
 	}
 
-	public Site setUserAgents(List<String> userAgents) {
+	public SiteConfig setUserAgents(List<String> userAgents) {
 		this.userAgents = userAgents;
 		return this;
 	}
@@ -327,7 +327,7 @@ public class Site {
         return new Task() {
             @Override
             public String getUUID() {
-                String uuid = Site.this.getDomain();
+                String uuid = SiteConfig.this.getDomain();
                 if (uuid == null) {
                     uuid = UUID.randomUUID().toString();
                 }
@@ -335,8 +335,8 @@ public class Site {
             }
 
             @Override
-            public Site getSite() {
-                return Site.this;
+            public SiteConfig getSite() {
+                return SiteConfig.this;
             }
         };
     }
@@ -346,7 +346,7 @@ public class Site {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Site site = (Site) o;
+        SiteConfig site = (SiteConfig) o;
 
         if (cycleRetryTimes != site.cycleRetryTimes) return false;
         if (retryTimes != site.retryTimes) return false;

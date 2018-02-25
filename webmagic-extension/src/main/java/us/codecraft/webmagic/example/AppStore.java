@@ -1,6 +1,6 @@
 package us.codecraft.webmagic.example;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.utils.Experimental;
@@ -30,7 +30,7 @@ public class AppStore {
     private List<String> supportedDevices;
 
     public static void main(String[] args) {
-        AppStore appStore = OOSpider.create(Site.getInstance(), AppStore.class).<AppStore>get("http://itunes.apple.com/lookup?id=653350791&country=cn&entity=software");
+        AppStore appStore = OOSpider.create(SiteConfig.getInstance(), AppStore.class).<AppStore>get("http://itunes.apple.com/lookup?id=653350791&country=cn&entity=software");
         System.out.println(appStore.trackName);
         System.out.println(appStore.description);
         System.out.println(appStore.userRatingCount);

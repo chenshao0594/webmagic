@@ -1,6 +1,6 @@
 package us.codecraft.webmagic.model;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
@@ -17,7 +17,7 @@ public class GithubRepo extends BaseRepo{
     private int fork;
 
     public static void main(String[] args) {
-        OOSpider.create(Site.getInstance().setSleepTime(100)
+        OOSpider.create(SiteConfig.getInstance().setSleepTime(100)
                 , new ConsolePageModelPipeline(), GithubRepo.class)
                 .addUrl("https://github.com/code4craft").thread(10).run();
     }

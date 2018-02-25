@@ -2,7 +2,7 @@ package us.codecraft.webmagic.processor.example;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.ResultItems;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BaiduBaikePageProcessor implements PageProcessor {
 
-    private Site site = Site.getInstance()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
+    private SiteConfig site = SiteConfig.getInstance()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
             .setRetryTimes(3).setSleepTime(1000).setUseGzip(true);
 
     @Override
@@ -25,7 +25,7 @@ public class BaiduBaikePageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

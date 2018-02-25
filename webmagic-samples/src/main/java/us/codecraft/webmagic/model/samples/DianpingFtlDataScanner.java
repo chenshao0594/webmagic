@@ -3,7 +3,7 @@ package us.codecraft.webmagic.model.samples;
 import java.util.List;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.model.AfterExtractor;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
@@ -21,7 +21,7 @@ public class DianpingFtlDataScanner implements AfterExtractor {
 	private List<String> data;
 
 	public static void main(String[] args) {
-		OOSpider.create(Site.getInstance().setSleepTime(0), DianpingFtlDataScanner.class)
+		OOSpider.create(SiteConfig.getInstance().setSleepTime(0), DianpingFtlDataScanner.class)
 				.thread(5).run();
 	}
 

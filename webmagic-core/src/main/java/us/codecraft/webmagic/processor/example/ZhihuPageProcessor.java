@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.processor.example;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -11,7 +11,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class ZhihuPageProcessor implements PageProcessor {
 
-    private Site site = Site.getInstance().setRetryTimes(3).setSleepTime(1000);
+    private SiteConfig site = SiteConfig.getInstance().setRetryTimes(3).setSleepTime(1000);
 
     @Override
     public void process(Page page) {
@@ -26,7 +26,7 @@ public class ZhihuPageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

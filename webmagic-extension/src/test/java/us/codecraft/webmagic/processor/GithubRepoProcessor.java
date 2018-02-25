@@ -18,8 +18,8 @@ public class GithubRepoProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
-        return Site.getInstance();
+    public SiteConfig getSite() {
+        return SiteConfig.getInstance();
     }
 
     @Test

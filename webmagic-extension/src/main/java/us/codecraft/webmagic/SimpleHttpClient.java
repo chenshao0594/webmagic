@@ -13,13 +13,13 @@ public class SimpleHttpClient {
 
     private final HttpClientDownloader httpClientDownloader;
 
-    private final Site site;
+    private final SiteConfig site;
 
     public SimpleHttpClient() {
-        this(Site.getInstance());
+        this(SiteConfig.getInstance());
     }
 
-    public SimpleHttpClient(Site site) {
+    public SimpleHttpClient(SiteConfig site) {
         this.site = site;
         this.httpClientDownloader = new HttpClientDownloader();
     }

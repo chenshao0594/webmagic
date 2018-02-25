@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.example;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.model.PageMapper;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -12,7 +12,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class GithubRepoPageMapper implements PageProcessor {
 
-    private Site site = Site.getInstance().setRetryTimes(3).setSleepTime(0);
+    private SiteConfig site = SiteConfig.getInstance().setRetryTimes(3).setSleepTime(0);
 
     private PageMapper<GithubRepo> githubRepoPageMapper = new PageMapper<GithubRepo>(GithubRepo.class);
 
@@ -30,7 +30,7 @@ public class GithubRepoPageMapper implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

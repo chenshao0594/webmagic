@@ -4,7 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.jruby.RubyHash;
 import org.python.core.PyDictionary;
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import javax.script.ScriptContext;
@@ -29,7 +29,7 @@ public class ScriptProcessor implements PageProcessor {
 
     private final Language language;
 
-    private Site site = Site.getInstance();
+    private SiteConfig site = SiteConfig.getInstance();
 
     public ScriptProcessor(Language language, String script, int threadNum) {
         if (language == null || script == null) {
@@ -93,7 +93,7 @@ public class ScriptProcessor implements PageProcessor {
 
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

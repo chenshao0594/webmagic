@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import us.codecraft.webmagic.Request;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Task;
 
 /**
@@ -34,7 +34,7 @@ public class RedisPrioritySchedulerTest
             }
 
             @Override
-            public Site getSite() {
+            public SiteConfig getSite() {
                 return null;
             }
         };

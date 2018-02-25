@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.downloader.Downloader;
 import us.codecraft.webmagic.selector.Html;
@@ -88,7 +88,7 @@ public class SeleniumDownloader implements Downloader, Closeable {
 			e.printStackTrace();
 		}
 		WebDriver.Options manage = webDriver.manage();
-		Site site = task.getSite();
+		SiteConfig site = task.getSite();
 		if (site.getCookies() != null) {
 			for (Map.Entry<String, String> cookieEntry : site.getCookies()
 					.entrySet()) {

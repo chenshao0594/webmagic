@@ -3,7 +3,7 @@ package us.codecraft.webmagic.example;
 import java.util.Date;
 import java.util.List;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
@@ -30,7 +30,7 @@ public class OschinaBlog {
 
     public static void main(String[] args) {
         //results will be saved to "/data/webmagic/" in json format
-        OOSpider.create(Site.getInstance(), new JsonFilePageModelPipeline("/data/webmagic/"), OschinaBlog.class)
+        OOSpider.create(SiteConfig.getInstance(), new JsonFilePageModelPipeline("/data/webmagic/"), OschinaBlog.class)
                 .addUrl("http://my.oschina.net/flashsword/blog").run();
     }
 

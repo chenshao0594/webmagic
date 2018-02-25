@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.samples;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -11,7 +11,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class GithubRepoPageProcessor implements PageProcessor {
 
-    private Site site = Site.getInstance().setRetryTimes(3).setSleepTime(0);
+    private SiteConfig site = SiteConfig.getInstance().setRetryTimes(3).setSleepTime(0);
 
     @Override
     public void process(Page page) {
@@ -31,7 +31,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

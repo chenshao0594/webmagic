@@ -1,19 +1,19 @@
 package us.codecraft.webmagic.processor;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 
 /**
  * Interface to be implemented to customize a crawler.<br>
  * <br>
  * In PageProcessor, you can customize:
  * <br>
- * start urls and other settings in {@link Site}<br>
+ * start urls and other settings in {@link SiteConfig}<br>
  * how the urls to fetch are detected               <br>
  * how the data are extracted and stored             <br>
  *
  * @author code4crafter@gmail.com <br>
- * @see Site
+ * @see SiteConfig
  * @see Page
  * @since 0.1.0
  */
@@ -30,7 +30,7 @@ public interface PageProcessor {
      * get the site settings
      *
      * @return site
-     * @see Site
+     * @see SiteConfig
      */
-    public Site getSite();
+    public SiteConfig getSite();
 }

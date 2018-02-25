@@ -35,7 +35,7 @@ import org.apache.http.protocol.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 
 /**
  * @author code4crafter@gmail.com <br>
@@ -98,11 +98,11 @@ public class HttpClientGenerator {
         return this;
     }
 
-    public CloseableHttpClient getClient(Site site) {
+    public CloseableHttpClient getClient(SiteConfig site) {
         return generateClient(site);
     }
 
-    private CloseableHttpClient generateClient(Site site) {
+    private CloseableHttpClient generateClient(SiteConfig site) {
         HttpClientBuilder httpClientBuilder = HttpClients.custom();
         
         httpClientBuilder.setConnectionManager(connectionManager);
@@ -139,7 +139,7 @@ public class HttpClientGenerator {
         return httpClientBuilder.build();
     }
 
-    private void generateCookie(HttpClientBuilder httpClientBuilder, Site site) {
+    private void generateCookie(HttpClientBuilder httpClientBuilder, SiteConfig site) {
         if (site.isDisableCookieManagement()) {
             httpClientBuilder.disableCookieManagement();
             return;

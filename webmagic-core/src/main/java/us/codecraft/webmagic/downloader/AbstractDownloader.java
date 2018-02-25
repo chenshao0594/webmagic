@@ -2,7 +2,7 @@ package us.codecraft.webmagic.downloader;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.selector.Html;
 
 /**
@@ -31,7 +31,7 @@ public abstract class AbstractDownloader implements Downloader {
      * @return html
      */
     public Html download(String url, String charset) {
-        Page page = download(new Request(url), Site.getInstance().setCharset(charset).toTask());
+        Page page = download(new Request(url), SiteConfig.getInstance().setCharset(charset).toTask());
         return (Html) page.getHtml();
     }
 

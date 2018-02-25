@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.PriorityScheduler;
@@ -20,7 +20,7 @@ import us.codecraft.webmagic.scheduler.PriorityScheduler;
  */
 public class ZipCodePageProcessor implements PageProcessor {
 
-    private Site site = Site.getInstance().setCharset("gb2312")
+    private SiteConfig site = SiteConfig.getInstance().setCharset("gb2312")
             .setSleepTime(100);
 
     @Override
@@ -75,7 +75,7 @@ public class ZipCodePageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

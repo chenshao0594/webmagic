@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.configurable;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.utils.Experimental;
 
@@ -13,11 +13,11 @@ import java.util.List;
 @Experimental
 public class ConfigurablePageProcessor implements PageProcessor {
 
-    private Site site;
+    private SiteConfig site;
 
     private List<ExtractRule> extractRules;
 
-    public ConfigurablePageProcessor(Site site, List<ExtractRule> extractRules) {
+    public ConfigurablePageProcessor(SiteConfig site, List<ExtractRule> extractRules) {
         this.site = site;
         this.extractRules = extractRules;
     }
@@ -44,7 +44,7 @@ public class ConfigurablePageProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
+    public SiteConfig getSite() {
         return site;
     }
 

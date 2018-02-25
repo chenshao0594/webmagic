@@ -3,7 +3,7 @@ package us.codecraft.webmagic.samples;
 import java.util.List;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -27,8 +27,8 @@ public class MeicanProcessor implements PageProcessor {
     }
 
     @Override
-    public Site getSite() {
-		return Site.getInstance().setDomain("meican.com").setCharset("utf-8");
+    public SiteConfig getSite() {
+		return SiteConfig.getInstance().setDomain("meican.com").setCharset("utf-8");
     }
 
     public static void main(String[] args) {

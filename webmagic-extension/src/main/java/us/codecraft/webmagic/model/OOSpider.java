@@ -3,7 +3,7 @@ package us.codecraft.webmagic.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.SiteConfig;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.CollectorPipeline;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
@@ -63,7 +63,7 @@ public class OOSpider<T> extends Spider {
      * @param pageModelPipeline pageModelPipeline
      * @param pageModels pageModels
      */
-    public OOSpider(Site site, PageModelPipeline pageModelPipeline, Class... pageModels) {
+    public OOSpider(SiteConfig site, PageModelPipeline pageModelPipeline, Class... pageModels) {
         this(ModelPageProcessor.create(site, pageModels));
         this.modelPipeline = new ModelPipeline();
         super.addPipeline(modelPipeline);
@@ -80,11 +80,11 @@ public class OOSpider<T> extends Spider {
         return new PageModelCollectorPipeline<T>(pageModelClasses.get(0));
     }
 
-    public static OOSpider create(Site site, Class... pageModels) {
+    public static OOSpider create(SiteConfig site, Class... pageModels) {
         return new OOSpider(site, null, pageModels);
     }
 
-    public static OOSpider create(Site site, PageModelPipeline pageModelPipeline, Class... pageModels) {
+    public static OOSpider create(SiteConfig site, PageModelPipeline pageModelPipeline, Class... pageModels) {
         return new OOSpider(site, pageModelPipeline, pageModels);
     }
 

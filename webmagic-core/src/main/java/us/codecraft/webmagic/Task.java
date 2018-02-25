@@ -22,6 +22,6 @@ public interface Task {
      *
      * @return site
      */
-    public Site getSite();
+    public SiteConfig getSite();
 
 }
